@@ -18,15 +18,23 @@ all = []
 print "\nEnter lines ('.' by itself to quit)"
 
 # Loop until user terimates input
+index = 1
 while True :
-    entry = raw_input("> ")
+    tempStr = "%d > " %(index)
+    entry = raw_input(tempStr)
     if entry == "." :
         break
     else :
         all.append(entry)
+    index += 1
 
 # Write lines to file with proper line-ending
-fObj = open(fName, "w")
-fObj.writelines(['%s%s' %(x, ls) for x in all])
-fObj.close()
+try:
+    fObj = open(fName, "w")
+except IOError, e:
+    print " *** file open error ***", e
+else :
+    fObj.writelines(['%s%s' %(x, ls) for x in all])
+    fObj.close()
+
 print "Done!"

@@ -18,5 +18,5 @@ else :
     else :
         #display contents to the screen
         for eachLine in fObj :
-            print eachLine,
+            print eachLine.strip(),
         fObj.close()
