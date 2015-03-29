@@ -71,7 +71,7 @@
 * 略过, 查看TextFile.py
 
 #### 13. 添加新功能, 让用户能编辑自己的文件
-
+* [Python Curses Document](https://docs.python.org/2/howto/curses.html)
 
 
 
