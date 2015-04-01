@@ -7,7 +7,7 @@ import time
 import os
 
 
-def readFile() :
+def readFile():
     """ read text file function """
     # get filename
     fName = raw_input("Enter a file name > ")
@@ -15,24 +15,24 @@ def readFile() :
 
     fileContent = ""
 
-    if not os.path.exists(fName) :
+    if not os.path.exists(fName):
         print "File not found"
-    else :
+    else:
         try:
             fObj = open(fName)
         except IOError, e:
             print " *** file open error ***", e
-        else :
-            #display contents to the screen
-            for eachLine in fObj :
+        else:
+            # display contents to the screen
+            for eachLine in fObj:
                 fileContent += eachLine
             fObj.close()
     return fileContent
 
 
-
-def editText(text) :
-    moveTuple = (curses.KEY_LEFT, curses.KEY_RIGHT, curses.KEY_UP, curses.KEY_DOWN)
+def editText(text):
+    moveTuple = (
+        curses.KEY_LEFT, curses.KEY_RIGHT, curses.KEY_UP, curses.KEY_DOWN)
 
     # Init curses stdscr
     stdscr = curses.initscr()
@@ -44,7 +44,7 @@ def editText(text) :
     stdscr.scrollok(True)
     y = x = 0
     try:
-        stdscr.addstr(0,0,text)
+        stdscr.addstr(0, 0, text)
         stdscr.idcok(True)
         stdscr.idlok(1)
         maxY, maxX = stdscr.getmaxyx()
@@ -52,20 +52,20 @@ def editText(text) :
         stdscr.move(0, 20)
         stdscr.refresh()
         key = 'X'
-        while True :
+        while True:
             y, x = stdscr.getyx()
-            if key == ord('.') :
+            if key == ord('.'):
                 break
-            elif key == curses.KEY_BACKSPACE :
-                if x != 0 :
+            elif key == curses.KEY_BACKSPACE:
+                if x != 0:
                     stdscr.delch(y, x - 1)
-                elif y != 0 :
-                    stdscr.delch( y - 1 , maxX - 1)
-                else :
+                elif y != 0:
+                    stdscr.delch(y - 1, maxX - 1)
+                else:
                     curses.beep()
-            elif key in moveTuple :
+            elif key in moveTuple:
                 moveCursor(key, stdscr)
-            else :
+            else:
                 stdscr.addch(key)
             key = stdscr.getch()
             stdscr.refresh()
@@ -76,37 +76,30 @@ def editText(text) :
         curses.endwin()
 
 
-def moveCursor(key, stdscr) :
+def moveCursor(key, stdscr):
     maxY, maxX = stdscr.getmaxyx()
     y, x = stdscr.getyx()
-    if key == curses.KEY_LEFT :
-        if x != 0 :
+    if key == curses.KEY_LEFT:
+        if x != 0:
             x -= 1
-        elif y != 0 :
+        elif y != 0:
             y -= 1
-            x = maxX -1
-    elif key == curses.KEY_RIGHT :
-        if x != maxX - 1 :
+            x = maxX - 1
+    elif key == curses.KEY_RIGHT:
+        if x != maxX - 1:
             x += 1
-        elif y != maxY -1 :
+        elif y != maxY - 1:
             y += 1
             x = 0
-    elif key == curses.KEY_UP :
-        if y != 0 :
+    elif key == curses.KEY_UP:
+        if y != 0:
             y -= 1
-    elif key == curses.KEY_DOWN :
-        if y != maxY - 1 :
+    elif key == curses.KEY_DOWN:
+        if y != maxY - 1:
             y += 1
     stdscr.move(y, x)
 
 
-
-if __name__ == '__main__' :
+if __name__ == '__main__':
     text = readFile()
     editText(text)
-
-
-
-
-
-
