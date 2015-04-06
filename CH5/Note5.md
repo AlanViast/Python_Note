@@ -75,6 +75,20 @@
     * True和False现在都不是关键字, 但是在将来一定回事
 
 
+#### 9. 数字类型相关模块
+    * decimal: 十进制浮点运算类Decimal
+    * array: 高效数值数组(字符, 整型, 浮点型等)
+    * Numberic(NumPy): 数学科学计算
+    * SciPy: 数学科学计算
+    * math/cmath: 标准的C库数学运算函数, (常规数学运算在math模块, 负数运算在cmath模块)
+    * opertor: 数字操作符的函数实现, 比如tor.sub(m, n)等价于 m - n
+    * random: 多种伪随机数生成器
+        * randint(): 两个整型参数, 返回二者之间的随机整型
+        * randrange(): 它接受和range()函数一样的参数, 随机返回range([start,] stop[, end])结果的一项
+        * uniform(): 几乎和randint()一样, 不过它返回的是二者之间的浮点型(不包括范围上限)
+        * random(): 返回一个恒等于0.0 - 1.0之间的浮点数
+        * choice(): 随机返回给定的序列的下一个元素
+
 
 
 
