@@ -65,3 +65,68 @@ string.digits #所有数字
 * 'Hello' + u' '' + 'World' + u'!'!'
 
 #### 4.
+1. 格式化操作符(%)
+* %c : 转换成字符(ASCII码值, 长度为1的字符串)
+* %r : 优先使用repr()函数进行字符串转换
+* %s : 优先使用str()函数进行字符串转换
+* %d / %i : 转换成有符号十进制数字
+* %u : 转换成无符号十进制数字
+* %o : 转成无符号八进制数字
+* %x / %X : 转换成无符号十六进制(x/X代表转换后的十六进制字符的大小写)
+* %e / %E : 转换成科学计数法(e/E控制输出e/e)
+* %f / %F : 转换成浮点型(小数部分自然截断)
+* %g / %G : %e 和 %f, %E 和 %F 的简写
+* %% : 输出%
+
+2. 格式化操作符辅助符
+* * : 定义宽度或小数点精度
+* - : 用作左对齐
+* + : 在正数前面显示加号(+)
+* <sp> : 在正数前面显示空格
+* # : 在八进制前面显示零('0'), 在十六禁止前面显示'0x'或者'0X'(取决与用的是'x'还是'X')
+* 0 : 显示数字前面填充'0', 而不是默认的空格
+* % : '%%'输出单一的的'%'
+* (var) : 映射变量(字典参数)
+* m.n : m是显示的最小总宽度, n是小数点后的位数(如果可用的话)
+
+3. Demo
+```
+print "%x" %108
+print '%X' %108
+print '%#x' %108
+print '%#X' %108
+
+
+print '%f' %1234.567890
+print '%.2f' %1234.567890
+print '%E' %1234.567890
+print '%e' %1234.567890
+print '%g' %1234.567890
+print '%G' %1234.567890
+print '%e' %(1111111111111111111L)
+
+
+print '%+d' %4
+print '%-d' %-4
+print 'we are at %d%%' %100
+print 'Your host is : %s' %'earth'
+print 'Host: %s\tPort: %d' %('mars', 80)
+num = 123
+print 'Dec: %d/ort: %#o/hex: %#X' %(num, num, num)
+print "MM/DD/YY = %02d/%02d/%d" %(2, 15, 67)
+w, p = 'Web', 'Page'
+print "http://www.yyy.zzz/%s/%s.html" %(w, p)
+```
+
+4. 字符串模板, substitute() 和 safe_substitute()一样, 但是前者缺少key的情况下会报错, 后者在缺少key的情况下直接输出内容
+```
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
+from string import Template
+
+sTemplate = Template('There are ${howmany} ${lang} Quotation Symbols')
+print sTemplate.substitute(lang = 'Python', howmany = 3)
+
+print sTemplate.safe_substitute(lang = 'Python')
+```
