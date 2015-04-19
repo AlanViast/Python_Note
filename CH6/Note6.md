@@ -64,7 +64,7 @@ string.digits #所有数字
 4. 普通字符串转换为Unicode字符串
 * 'Hello' + u' '' + 'World' + u'!'!'
 
-#### 4.
+#### 4. 字符串操作
 1. 格式化操作符(%)
 * %c : 转换成字符(ASCII码值, 长度为1的字符串)
 * %r : 优先使用repr()函数进行字符串转换
@@ -130,3 +130,40 @@ print sTemplate.substitute(lang = 'Python', howmany = 3)
 
 print sTemplate.safe_substitute(lang = 'Python')
 ```
+
+5. 原始字符串
+  * 通过\n可以输出一个换行, 当需要输出文本"\n"时候, 可以使用 `r"\n"`, r表示该字符串不转义
+  * 原始字符串查找
+  ```
+  import re
+  m = re.search("\\[rtfvn]", r"Hello World\n")
+
+  if m is not None :
+    print m.group()
+
+  m = re.search(r"\\[rvfn]", r"HelloWorld\n")
+
+  if m is not None :
+    print m.group()
+  ```
+
+6. Unicode字符
+  * 通过`u"Hello World"`可以输出Unicode字符
+  * 如果要使用原始字符串和Unicode字符的情况下, u操作符必须在原始字符串操作符号前面, 如`ur"Hello \n World"`
+
+7. 字符串的内建函数(BIF) :
+  * cmp() : 字符串比较操作符号,`cmp(str1, st2)`, 字符串之间的比较是通过ASCII码值进行比较的
+  * len() : 计算字符串长度
+  * max() 和 min() : 计算两个字符串的最大值或者最小值他(也是通过ASCII码值作比较)
+  * enumerate() : 返回一个索引和值组成的元组对象迭代器
+  * zip() : 将两个序列对象, 组成一个元组迭代数组, 只取最短长度的
+
+8. 字符串类型函数
+  * raw_input([message]) : 函数接受一个用户的标准输入, 返回用户输入的字符串
+  * str() 和 unicode() : 都是工厂函数, 就是说产生所对应的类型对象, 他们接受一个任意类型的对象, 然后返回一个描述该对象的字符串
+  * chr(), unichr() 和 ord() : chr()返回一个范围在range(256)之间的整数作参数, 返回一个对应的字. unichr()跟它一样, 但是返回一个unicode字符, ord()返回一个ASCII码值
+
+9. 特殊字符串和控制字符
+
+
+
